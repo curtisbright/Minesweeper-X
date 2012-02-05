@@ -1,6 +1,4 @@
-#include "msx.h"
-
-MSXPanel::MSXPanel(wxFrame* parent) : wxPanel(parent)
+MSXPanel::MSXPanel(MSXFrame* parent) : wxPanel(parent)
 {	frame = parent;
 }
 
@@ -36,17 +34,3 @@ void MSXPanel::Paint(wxPaintEvent& event)
 	DrawBorder(dc, width-59, 15, width-19, 39, 1, 0);
 	DrawBorder(dc, ((width-24)>>1)-1, 15, ((width-24)>>1)+24, 40, 1, 2);
 }
-
-bool MSXApp::OnInit()
-{
-	frame = new wxFrame((wxFrame*)NULL, -1, wxT("Minesweeper X"), wxPoint(50,50), wxSize(-1,-1), wxDEFAULT_FRAME_STYLE&~(wxRESIZE_BORDER|wxMAXIMIZE_BOX));
-	drawPane = new MSXPanel((wxFrame*)frame);
-	drawPane->SetBackgroundColour(wxColour(192,192,192));
-	
-	frame->SetClientSize(0x118,0x143);
-	frame->Show();
-	
-	return true;
-} 
-
-IMPLEMENT_APP(MSXApp)
