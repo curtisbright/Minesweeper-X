@@ -34,11 +34,11 @@ void MSXFrame::OnExit(wxCommandEvent& WXUNUSED(event))
 }
 
 void MSXFrame::OnAbout(wxCommandEvent& WXUNUSED(event))
-{
+{	AboutDialog dialog(this);
+	dialog.ShowModal();
 }
 
 void MSXFrame::OnCustom(wxCommandEvent& WXUNUSED(event))
-{
-	CustomDialog dialog(this);
+{	CustomDialog dialog(this);
 	dialog.ShowModal();
 }

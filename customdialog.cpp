@@ -1,44 +1,43 @@
 CustomDialog::CustomDialog(wxWindow* parent) : wxDialog(parent, wxID_ANY, wxT("Custom Field"), wxPoint(-1,-1), wxSize(-1,-1), wxDEFAULT_DIALOG_STYLE)
 {
-	//this->SetSizeHints( wxDefaultSize, wxDefaultSize );
+	//this->SetSizeHints(wxDefaultSize, wxDefaultSize);
 	
-	wxGridSizer* gSizer1;
-	gSizer1 = new wxFlexGridSizer( 3, 3, 0, 0 );
+	wxGridSizer* CustomSizer = new wxFlexGridSizer(3, 3, 0, 0);
 	
-	m_height = new wxStaticText( this, wxID_ANY, wxT("Height:"), wxDefaultPosition, wxSize( -1,-1 ), 0 );
-	m_height->Wrap( -1 );
-	gSizer1->Add( m_height, 1, wxALL, 5 );
+	wxStaticText* HeightText = new wxStaticText(this, wxID_ANY, wxT("Height:"), wxDefaultPosition, wxSize(-1,-1), 0);
+	HeightText->Wrap(-1);
+	CustomSizer->Add(HeightText, 1, wxALL, 5);
 	
-	m_textCtrl2 = new wxTextCtrl( this, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0 );
-	gSizer1->Add( m_textCtrl2, 0, wxALL, 5 );
+	wxTextCtrl* HeightInput = new wxTextCtrl(this, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0);
+	CustomSizer->Add(HeightInput, 0, wxALL, 5);
 	
-	m_OK = new wxButton( this, wxID_ANY, wxT("OK"), wxDefaultPosition, wxDefaultSize, 0 );
-	gSizer1->Add( m_OK, 0, wxALL|wxALIGN_CENTER_HORIZONTAL, 5 );
+	wxButton* OKButton = new wxButton(this, ID_OK, wxT("OK"), wxDefaultPosition, wxDefaultSize, 0);
+	CustomSizer->Add(OKButton, 0, wxALL|wxALIGN_CENTER_HORIZONTAL, 5);
 	
-	m_width = new wxStaticText( this, wxID_ANY, wxT("Width:"), wxDefaultPosition, wxDefaultSize, 0 );
-	m_width->Wrap( -1 );
-	gSizer1->Add( m_width, 0, wxALL, 5 );
+	wxStaticText* WidthText = new wxStaticText(this, wxID_ANY, wxT("Width:"), wxDefaultPosition, wxDefaultSize, 0);
+	WidthText->Wrap(-1);
+	CustomSizer->Add(WidthText, 0, wxALL, 5);
 	
-	m_textCtrl3 = new wxTextCtrl( this, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0 );
-	gSizer1->Add( m_textCtrl3, 0, wxALL, 5 );
+	wxTextCtrl* WidthInput = new wxTextCtrl(this, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0);
+	CustomSizer->Add(WidthInput, 0, wxALL, 5);
 	
-	m_cancel = new wxButton( this, wxID_ANY, wxT("Cancel"), wxDefaultPosition, wxDefaultSize, 0 );
-	gSizer1->Add( m_cancel, 0, wxALL|wxALIGN_CENTER_HORIZONTAL, 5 );
+	wxButton* CancelButton = new wxButton(this, ID_CANCEL, wxT("Cancel"), wxDefaultPosition, wxDefaultSize, 0);
+	CustomSizer->Add(CancelButton, 0, wxALL|wxALIGN_CENTER_HORIZONTAL, 5);
 	
-	m_mines = new wxStaticText( this, wxID_ANY, wxT("Mines:"), wxDefaultPosition, wxDefaultSize, 0 );
-	m_mines->Wrap( -1 );
-	gSizer1->Add( m_mines, 0, wxALL, 5 );
+	wxStaticText* MinesText = new wxStaticText(this, wxID_ANY, wxT("Mines:"), wxDefaultPosition, wxDefaultSize, 0);
+	MinesText->Wrap(-1);
+	CustomSizer->Add(MinesText, 0, wxALL, 5);
 	
-	m_textCtrl4 = new wxTextCtrl( this, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0 );
-	gSizer1->Add( m_textCtrl4, 0, wxALL, 5 );
+	wxTextCtrl* MinesInput = new wxTextCtrl(this, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0);
+	CustomSizer->Add(MinesInput, 0, wxALL, 5);
 	
-	this->SetSizer( gSizer1 );
+	this->SetSizer(CustomSizer);
 	this->Layout();
-	gSizer1->Fit( this );
+	CustomSizer->Fit(this);
 	
-	this->Centre( wxBOTH );
+	this->Centre(wxBOTH);
 }
 
-CustomDialog::~CustomDialog()
-{
+void CustomDialog::OnExit(wxCommandEvent& WXUNUSED(event))
+{	Close(true);
 }

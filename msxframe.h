@@ -1,7 +1,6 @@
-enum { ID_NEW, ID_BEGINNER, ID_INTERMEDIATE, ID_EXPERT, ID_CUSTOM, ID_MARKS, ID_PLAYER_NAME, ID_SAVE_VIDEO };
-
 class MSXFrame : public wxFrame
 {	private:
+	enum {ID_NEW, ID_BEGINNER, ID_INTERMEDIATE, ID_EXPERT, ID_CUSTOM, ID_MARKS, ID_PLAYER_NAME, ID_SAVE_VIDEO};
     void OnExit(wxCommandEvent& event);
     void OnAbout(wxCommandEvent& event);
     void OnCustom(wxCommandEvent& event);

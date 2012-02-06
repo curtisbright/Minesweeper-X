@@ -1,15 +1,14 @@
 class CustomDialog : public wxDialog 
 {	private:
-	wxStaticText* m_height;
-	wxTextCtrl* m_textCtrl2;
-	wxButton* m_OK;
-	wxStaticText* m_width;
-	wxTextCtrl* m_textCtrl3;
-	wxButton* m_cancel;
-	wxStaticText* m_mines;
-	wxTextCtrl* m_textCtrl4;
+	enum{ID_OK, ID_CANCEL};
 	
 	public:
 	CustomDialog(wxWindow* parent); 
-	~CustomDialog();
+	void OnExit(wxCommandEvent& event);
+	DECLARE_EVENT_TABLE()
 };
+
+BEGIN_EVENT_TABLE(CustomDialog, wxDialog)
+	EVT_BUTTON(ID_OK, CustomDialog::OnExit)
+	EVT_BUTTON(ID_CANCEL, CustomDialog::OnExit)
+END_EVENT_TABLE()
