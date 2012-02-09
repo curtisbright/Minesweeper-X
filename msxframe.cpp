@@ -8,7 +8,7 @@ MSXFrame::MSXFrame() : wxFrame((wxFrame*)NULL, -1, wxT("Minesweeper X"), wxPoint
 	drawPane->SetBackgroundColour(wxColour(192, 192, 192));
 	
 	wxMenuBar *menu_bar = new wxMenuBar;
-    wxMenu *game_menu = new wxMenu;
+	wxMenu *game_menu = new wxMenu;
 	wxMenu *extras_menu = new wxMenu;
 	wxMenu *help_menu = new wxMenu;
 	
@@ -24,9 +24,9 @@ MSXFrame::MSXFrame() : wxFrame((wxFrame*)NULL, -1, wxT("Minesweeper X"), wxPoint
 	game_menu->Append(wxID_EXIT, wxT("E&xit"));
 	extras_menu->Append(ID_PLAYER_NAME, wxT("&Player Name..."));
 	extras_menu->Append(ID_SAVE_VIDEO, wxT("&Save Video"));
-    help_menu->Append(wxID_ABOUT, wxT("&About..."));
+	help_menu->Append(wxID_ABOUT, wxT("&About..."));
 	
-    menu_bar->Append(game_menu, wxT("&Game"));
+	menu_bar->Append(game_menu, wxT("&Game"));
 	menu_bar->Append(extras_menu, wxT("&Extras"));
 	menu_bar->Append(help_menu, wxT("&Help"));
 	SetMenuBar(menu_bar);
