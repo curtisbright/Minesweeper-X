@@ -13,7 +13,7 @@
 
 bool MSXApp::OnInit()
 {
-	frame = new MSXFrame();
+	wxFrame* frame = new MSXFrame();
 	frame->Show();
 	
 	return true;

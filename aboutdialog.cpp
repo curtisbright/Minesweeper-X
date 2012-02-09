@@ -1,13 +1,10 @@
-#include "winmine.ico.h"
-
-AboutDialog::AboutDialog(wxWindow* parent) : wxDialog(parent, wxID_ANY, wxT("About"), wxDefaultPosition, wxSize(-1,-1), wxDEFAULT_DIALOG_STYLE)
+AboutDialog::AboutDialog(wxWindow* parent, wxIcon& icon) : wxDialog(parent, wxID_ANY, wxT("About"), wxDefaultPosition, wxSize(-1,-1), wxDEFAULT_DIALOG_STYLE)
 {
 	//this->SetSizeHints(wxDefaultSize, wxDefaultSize);
 	
 	wxBoxSizer* AboutSizer = new wxBoxSizer(wxHORIZONTAL);
 	
-	wxInitAllImageHandlers();
-	wxStaticBitmap* m_bitmap = new wxStaticBitmap(this, wxID_ANY, winmine_ico_to_wx_bitmap(), wxDefaultPosition, wxDefaultSize, 0);
+	wxStaticBitmap* m_bitmap = new wxStaticBitmap(this, wxID_ANY, icon, wxDefaultPosition, wxDefaultSize, 0);
 	AboutSizer->Add(m_bitmap, 0, wxALL, 5);
 	
 	wxBoxSizer* DescriptionSizer = new wxBoxSizer(wxVERTICAL);

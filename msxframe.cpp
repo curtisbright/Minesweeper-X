@@ -4,6 +4,10 @@ MSXFrame::MSXFrame() : wxFrame((wxFrame*)NULL, -1, wxT("Minesweeper X"), wxPoint
 	yNum = 16;
 	mNum = 40;
 	
+	wxImage::AddHandler(new wxICOHandler);
+	icon = new wxIcon(wxT("graphics/winmine.ico"), wxBITMAP_TYPE_ICO);
+	SetIcon(*icon);
+	
 	drawPane = new MSXPanel((MSXFrame*)this);
 	drawPane->SetBackgroundColour(wxColour(192, 192, 192));
 	
@@ -39,7 +43,7 @@ void MSXFrame::OnExit(wxCommandEvent& WXUNUSED(event))
 }
 
 void MSXFrame::OnAbout(wxCommandEvent& WXUNUSED(event))
-{	AboutDialog dialog(this);
+{	AboutDialog dialog(this, *icon);
 	dialog.ShowModal();
 }
 

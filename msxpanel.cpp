@@ -1,5 +1,18 @@
+#define BUTTON_DOWN    0
+#define BUTTON_WIN     24
+#define BUTTON_LOSE    48
+#define BUTTON_CAUTION 72
+#define BUTTON_HAPPY   96
+
 MSXPanel::MSXPanel(MSXFrame* parent) : wxPanel(parent)
 {	frame = parent;
+
+	wxBitmap* buttonbmp = new wxBitmap(wxImage(wxT("graphics/button.bmp"), wxBITMAP_TYPE_BMP));
+	wxBitmap* ledbmp = new wxBitmap(wxImage(wxT("graphics/led.bmp"), wxBITMAP_TYPE_BMP));
+	wxBitmap* blocksbmp = new wxBitmap(wxImage(wxT("graphics/blocks.bmp"), wxBITMAP_TYPE_BMP));
+	button = new wxMemoryDC(*buttonbmp);
+	led = new wxMemoryDC(*ledbmp);
+	blocks = new wxMemoryDC(*blocksbmp);
 }
 
 void MSXPanel::DrawBorder(wxDC& dc, int x1, int y1, int x2, int y2, int width, int colour)
@@ -33,4 +46,6 @@ void MSXPanel::Paint(wxPaintEvent& event)
 	DrawBorder(dc, 16, 15, 56, 39, 1, 0);
 	DrawBorder(dc, width-59, 15, width-19, 39, 1, 0);
 	DrawBorder(dc, ((width-24)>>1)-1, 15, ((width-24)>>1)+24, 40, 1, 2);
+	
+	dc.Blit((width-24)>>1, 16, 24, 24, button, 0, BUTTON_HAPPY);
 }

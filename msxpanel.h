@@ -3,6 +3,9 @@ class MSXPanel : public wxPanel
 	void Paint(wxPaintEvent& evt);
 	void DrawBorder(wxDC& dc, int x1, int y1, int x2, int y2, int width, int colour);
 	MSXFrame* frame;
+	wxMemoryDC* button;
+	wxMemoryDC* led;
+	wxMemoryDC* blocks;
 	
 	public:
 	MSXPanel(MSXFrame* parent);
