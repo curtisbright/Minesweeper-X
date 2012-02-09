@@ -1,4 +1,4 @@
-#include "wx/wx.h"
+#include <wx/wx.h>
 #include <wx/hyperlink.h>
 #include <wx/statline.h>
 #include "msxapp.h"
@@ -14,7 +14,6 @@
 bool MSXApp::OnInit()
 {
 	frame = new MSXFrame();
-	frame->SetClientSize(0x118,0x143);
 	frame->Show();
 	
 	return true;

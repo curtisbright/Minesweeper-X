@@ -1,4 +1,4 @@
-CustomDialog::CustomDialog(wxWindow* parent) : wxDialog(parent, wxID_ANY, wxT("Custom Field"), wxPoint(-1,-1), wxSize(-1,-1), wxDEFAULT_DIALOG_STYLE)
+CustomDialog::CustomDialog(wxWindow* parent, int height, int width, int mines) : wxDialog(parent, wxID_ANY, wxT("Custom Field"), wxPoint(-1,-1), wxSize(-1,-1), wxDEFAULT_DIALOG_STYLE)
 {
 	//this->SetSizeHints(wxDefaultSize, wxDefaultSize);
 	
@@ -8,7 +8,7 @@ CustomDialog::CustomDialog(wxWindow* parent) : wxDialog(parent, wxID_ANY, wxT("C
 	HeightText->Wrap(-1);
 	CustomSizer->Add(HeightText, 1, wxALL, 5);
 	
-	wxTextCtrl* HeightInput = new wxTextCtrl(this, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0);
+	HeightInput = new wxTextCtrl(this, wxID_ANY, wxString::Format(wxT("%i"), height), wxDefaultPosition, wxDefaultSize, 0);
 	CustomSizer->Add(HeightInput, 0, wxALL, 5);
 	
 	wxButton* OKButton = new wxButton(this, wxID_OK, wxT("OK"), wxDefaultPosition, wxDefaultSize, 0);
@@ -18,7 +18,7 @@ CustomDialog::CustomDialog(wxWindow* parent) : wxDialog(parent, wxID_ANY, wxT("C
 	WidthText->Wrap(-1);
 	CustomSizer->Add(WidthText, 0, wxALL, 5);
 	
-	wxTextCtrl* WidthInput = new wxTextCtrl(this, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0);
+	WidthInput = new wxTextCtrl(this, wxID_ANY, wxString::Format(wxT("%i"), width), wxDefaultPosition, wxDefaultSize, 0);
 	WidthInput->MoveAfterInTabOrder(HeightInput);
 	CustomSizer->Add(WidthInput, 0, wxALL, 5);
 	
@@ -29,7 +29,7 @@ CustomDialog::CustomDialog(wxWindow* parent) : wxDialog(parent, wxID_ANY, wxT("C
 	MinesText->Wrap(-1);
 	CustomSizer->Add(MinesText, 0, wxALL, 5);
 	
-	wxTextCtrl* MinesInput = new wxTextCtrl(this, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0);
+	MinesInput = new wxTextCtrl(this, wxID_ANY, wxString::Format(wxT("%i"), mines), wxDefaultPosition, wxDefaultSize, 0);
 	MinesInput->MoveAfterInTabOrder(WidthInput);
 	CustomSizer->Add(MinesInput, 0, wxALL, 5);
 	
@@ -42,4 +42,16 @@ CustomDialog::CustomDialog(wxWindow* parent) : wxDialog(parent, wxID_ANY, wxT("C
 
 void CustomDialog::OnExit(wxCommandEvent& WXUNUSED(event))
 {	Close(true);
+}
+
+int CustomDialog::getHeight()
+{	return wxAtoi(HeightInput->GetValue());
+}
+
+int CustomDialog::getWidth()
+{	return wxAtoi(WidthInput->GetValue());
+}
+
+int CustomDialog::getMines()
+{	return wxAtoi(MinesInput->GetValue());
 }
