@@ -3,7 +3,7 @@ class AboutDialog : public wxDialog
 	enum {ID_BUTTON};
 	
 	public:
-	AboutDialog(wxWindow* parent, wxIcon& icon);
+	AboutDialog(wxWindow* parent);
 	void OnExit(wxCommandEvent& event);
 	DECLARE_EVENT_TABLE()
 };

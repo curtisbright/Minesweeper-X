@@ -1,12 +1,10 @@
+#include "graphics/winmine_ico.xpm"
+
 MSXFrame::MSXFrame() : wxFrame((wxFrame*)NULL, -1, wxT("Minesweeper X"), wxPoint(50,50), wxSize(-1,-1), wxDEFAULT_FRAME_STYLE&~(wxRESIZE_BORDER|wxMAXIMIZE_BOX))
 {	
 	xNum = 16;
 	yNum = 16;
 	mNum = 40;
-	
-	wxImage::AddHandler(new wxICOHandler);
-	icon = new wxIcon(wxT("graphics/winmine.ico"), wxBITMAP_TYPE_ICO);
-	SetIcon(*icon);
 	
 	drawPane = new MSXPanel((MSXFrame*)this);
 	drawPane->SetBackgroundColour(wxColour(192, 192, 192));
@@ -34,6 +32,7 @@ MSXFrame::MSXFrame() : wxFrame((wxFrame*)NULL, -1, wxT("Minesweeper X"), wxPoint
 	menu_bar->Append(extras_menu, wxT("&Extras"));
 	menu_bar->Append(help_menu, wxT("&Help"));
 	SetMenuBar(menu_bar);
+	SetIcon(winmine_ico);
 	
 	Resize();
 }
@@ -43,7 +42,7 @@ void MSXFrame::OnExit(wxCommandEvent& WXUNUSED(event))
 }
 
 void MSXFrame::OnAbout(wxCommandEvent& WXUNUSED(event))
-{	AboutDialog dialog(this, *icon);
+{	AboutDialog dialog(this);
 	dialog.ShowModal();
 }
 

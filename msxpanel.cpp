@@ -1,3 +1,7 @@
+#include "graphics/button_bmp.xpm"
+#include "graphics/led_bmp.xpm"
+#include "graphics/blocks_bmp.xpm"
+
 #define BUTTON_DOWN    0
 #define BUTTON_WIN     24
 #define BUTTON_LOSE    48
@@ -7,9 +11,9 @@
 MSXPanel::MSXPanel(MSXFrame* parent) : wxPanel(parent)
 {	frame = parent;
 
-	wxBitmap* buttonbmp = new wxBitmap(wxImage(wxT("graphics/button.bmp"), wxBITMAP_TYPE_BMP));
-	wxBitmap* ledbmp = new wxBitmap(wxImage(wxT("graphics/led.bmp"), wxBITMAP_TYPE_BMP));
-	wxBitmap* blocksbmp = new wxBitmap(wxImage(wxT("graphics/blocks.bmp"), wxBITMAP_TYPE_BMP));
+	wxBitmap* buttonbmp = new wxBitmap(button_bmp);
+	wxBitmap* ledbmp = new wxBitmap(led_bmp);
+	wxBitmap* blocksbmp = new wxBitmap(blocks_bmp);
 	button = new wxMemoryDC(*buttonbmp);
 	led = new wxMemoryDC(*ledbmp);
 	blocks = new wxMemoryDC(*blocksbmp);
@@ -20,7 +24,7 @@ void MSXPanel::DrawBorder(wxDC& dc, int x1, int y1, int x2, int y2, int width, i
 	if(colour&1)
 		dc.SetPen(*wxWHITE_PEN);
 	else
-		dc.SetPen(wxPen(wxColor(128,128,128)));
+		dc.SetPen(wxPen(wxColor(128, 128, 128)));
 	for(int i=0; i<width; i++)
 	{	dc.DrawLine(x1+i, y1+i, x1+i, y2-i);
 		dc.DrawLine(x1+i, y1+i, x2-i, y1+i);
@@ -29,7 +33,7 @@ void MSXPanel::DrawBorder(wxDC& dc, int x1, int y1, int x2, int y2, int width, i
 	if(colour==0)
 		dc.SetPen(*wxWHITE_PEN);
 	else
-		dc.SetPen(wxPen(wxColor(128,128,128)));
+		dc.SetPen(wxPen(wxColor(128, 128, 128)));
 	for(int i=0; i<width; i++)
 	{	dc.DrawLine(x2-i+1, y2-i, x1+i+1, y2-i);
 		dc.DrawLine(x2-i, y2-i+1, x2-i, y1+i+1);

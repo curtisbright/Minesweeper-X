@@ -10,7 +10,6 @@ class MSXFrame : public wxFrame
 	void Resize();
 	MSXPanel* drawPane;
 	int xNum, yNum, mNum;
-	wxIcon* icon;
 
 	public:
 	MSXFrame();
