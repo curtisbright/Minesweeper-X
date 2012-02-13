@@ -35,11 +35,10 @@ AboutDialog::AboutDialog(wxWindow* parent) : wxDialog(parent, wxID_ANY, wxT("Abo
 	
 	wxStaticText* DescriptionText1 = new wxStaticText(this, wxID_ANY, wxT("Minesweeper X is free software, and was"), wxDefaultPosition, wxDefaultSize, 0);
 	DescriptionText1->Wrap(-1);
-	DescriptionSizer->Add(DescriptionText1, 0, wxLEFT|wxTOP, 5);
+	DescriptionSizer->Add(DescriptionText1, 0, wxLEFT|wxTOP|wxRIGHT, 5);
 	
-	wxStaticText* DescriptionText2 = new wxStaticText(this, wxID_ANY, wxT("written in C++ using the wxWidgets library."), wxDefaultPosition, wxDefaultSize, 0);
+	wxStaticText* DescriptionText2 = new wxStaticText(this, wxID_ANY, wxT("developed using the wxWidgets library."), wxDefaultPosition, wxDefaultSize, 0);
 	DescriptionText2->Wrap(-1);
-	
 	DescriptionSizer->Add(DescriptionText2, 0, wxLEFT|wxRIGHT, 5);
 	
 	wxHyperlinkCtrl* WebsiteText = new wxHyperlinkCtrl(this, wxID_ANY, wxT("http://www.curtisbright.com/msx/"), wxT("http://www.curtisbright.com/msx/"), wxDefaultPosition, wxDefaultSize, wxHL_DEFAULT_STYLE);
