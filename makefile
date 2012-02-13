@@ -5,4 +5,4 @@ compile: $(OBJFILES)
 %.o: %.cpp
 	g++ $< -c `wx-config --libs` `wx-config --cxxflags`
 clean:
-	rm -f msx
+	rm -f msx *.o
