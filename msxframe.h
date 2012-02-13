@@ -11,6 +11,7 @@ class MSXFrame : public wxFrame
 	void OnExpert(wxCommandEvent& event);
 	void OnCustom(wxCommandEvent& event);
 	void Resize();
+	void Activate(wxActivateEvent& event);
 	MSXPanel* drawPane;
 	int xNum, yNum, mNum;
 

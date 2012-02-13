@@ -86,6 +86,10 @@ void MSXFrame::Resize()
 {	SetClientSize(xNum*16+24, yNum*16+67);
 }
 
+void MSXFrame::Activate(wxActivateEvent& WXUNUSED(event))
+{	//IgnoreClick = true;
+}
+
 BEGIN_EVENT_TABLE(MSXFrame, wxFrame)
 	EVT_MENU(wxID_EXIT,  MSXFrame::OnExit)
 	EVT_MENU(ID_BEGINNER, MSXFrame::OnBeginner)
@@ -93,4 +97,5 @@ BEGIN_EVENT_TABLE(MSXFrame, wxFrame)
 	EVT_MENU(ID_EXPERT, MSXFrame::OnExpert)
 	EVT_MENU(ID_CUSTOM, MSXFrame::OnCustom)
 	EVT_MENU(wxID_ABOUT, MSXFrame::OnAbout)
+	EVT_ACTIVATE(MSXFrame::Activate)
 END_EVENT_TABLE()

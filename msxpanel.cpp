@@ -43,6 +43,56 @@ void MSXPanel::DrawBorder(wxDC& dc, int x1, int y1, int x2, int y2, int width, i
 	}
 }
 
+void MSXPanel::DrawButton(int type)
+{	wxClientDC dc(this);
+	int width, height;
+	frame->GetClientSize(&width, &height);
+	dc.Blit((width-24)>>1, 16, 24, 24, button, 0, type);
+}
+
+bool MSXPanel::OnButton(wxPoint pos)
+{	int width, height;
+	GetClientSize(&width, &height);
+	wxRect* Capture = new wxRect((width-24)>>1, 16, 24, 24);
+	if(!Capture->Contains(pos))
+		return false;
+	DrawButton(BUTTON_DOWN);
+}
+
+void MSXPanel::LButtonDown(wxMouseEvent& event)
+{	/*if(IgnoreClick)
+	{	IgnoreClick = false;
+		return;
+	}*/
+	if(OnButton(event.GetPosition()))
+		return;
+}
+
+void MSXPanel::RButtonDown(wxMouseEvent& WXUNUSED(event))
+{	
+}
+
+void MSXPanel::MButtonDown(wxMouseEvent& WXUNUSED(event))
+{	
+}
+
+void MSXPanel::LButtonUp(wxMouseEvent& WXUNUSED(event))
+{	DrawButton(BUTTON_HAPPY);
+	
+}
+
+void MSXPanel::RButtonUp(wxMouseEvent& WXUNUSED(event))
+{	
+}
+
+void MSXPanel::MButtonUp(wxMouseEvent& WXUNUSED(event))
+{	
+}
+
+void MSXPanel::MouseMove(wxMouseEvent& event)
+{	printf("(%i %i)\n", event.GetX(), event.GetY());
+}
+
 void MSXPanel::Paint(wxPaintEvent& event)
 {	wxPaintDC dc(this);
 	int width, height;
@@ -59,4 +109,14 @@ void MSXPanel::Paint(wxPaintEvent& event)
 
 BEGIN_EVENT_TABLE(MSXPanel, wxPanel)
 	EVT_PAINT(MSXPanel::Paint)
+	EVT_LEFT_DOWN(MSXPanel::LButtonDown)
+	EVT_RIGHT_DOWN(MSXPanel::RButtonDown)
+	EVT_MIDDLE_DOWN(MSXPanel::MButtonDown)
+	EVT_LEFT_UP(MSXPanel::LButtonUp)
+	EVT_RIGHT_UP(MSXPanel::RButtonUp)
+	EVT_MIDDLE_UP(MSXPanel::MButtonUp)
+	EVT_LEFT_DCLICK(MSXPanel::LButtonDown)
+	EVT_RIGHT_DCLICK(MSXPanel::RButtonDown)
+	EVT_MIDDLE_DCLICK(MSXPanel::MButtonDown)
+	EVT_MOTION(MSXPanel::MouseMove)
 END_EVENT_TABLE()
