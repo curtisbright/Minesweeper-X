@@ -4,7 +4,7 @@ AboutDialog::AboutDialog(wxWindow* parent) : wxDialog(parent, wxID_ANY, wxT("Abo
 	
 	wxBoxSizer* AboutSizer = new wxBoxSizer(wxHORIZONTAL);
 	
-	wxStaticBitmap* m_bitmap = new wxStaticBitmap(this, wxID_ANY, winmine_ico, wxDefaultPosition, wxDefaultSize, 0);
+	wxStaticBitmap* m_bitmap = new wxStaticBitmap(this, wxID_ANY, wxIcon(winmine_ico), wxDefaultPosition, wxDefaultSize, 0);
 	AboutSizer->Add(m_bitmap, 0, wxALL, 5);
 	
 	wxBoxSizer* DescriptionSizer = new wxBoxSizer(wxVERTICAL);
