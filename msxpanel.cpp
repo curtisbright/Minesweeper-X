@@ -38,8 +38,8 @@ void MSXPanel::DrawBorder(wxDC& dc, int x1, int y1, int x2, int y2, int width, i
 	else
 		dc.SetPen(wxPen(wxColor(128, 128, 128)));
 	for(int i=0; i<width; i++)
-	{	dc.DrawLine(x2-i+1, y2-i, x1+i+1, y2-i);
-		dc.DrawLine(x2-i, y2-i+1, x2-i, y1+i+1);
+	{	dc.DrawLine(x1+i+1, y2-i, x2-i+1, y2-i);
+		dc.DrawLine(x2-i, y1+i+1, x2-i, y2-i+1);
 	}
 }
 
