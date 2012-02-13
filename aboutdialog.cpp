@@ -1,4 +1,10 @@
-AboutDialog::AboutDialog(wxWindow* parent) : wxDialog(parent, wxID_ANY, wxT("About"), wxDefaultPosition, wxSize(-1,-1), wxDEFAULT_DIALOG_STYLE)
+#include <wx/wx.h>
+#include <wx/hyperlink.h>
+#include <wx/statline.h>
+#include "aboutdialog.h"
+#include "graphics/winmine_ico.xpm"
+
+AboutDialog::AboutDialog(wxWindow* parent) : wxDialog(parent, wxID_ANY, wxT("About"), wxDefaultPosition, wxSize(-1, -1), wxDEFAULT_DIALOG_STYLE)
 {
 	//this->SetSizeHints(wxDefaultSize, wxDefaultSize);
 	
@@ -61,3 +67,7 @@ AboutDialog::AboutDialog(wxWindow* parent) : wxDialog(parent, wxID_ANY, wxT("Abo
 void AboutDialog::OnExit(wxCommandEvent& WXUNUSED(event))
 {	Close(true);
 }
+
+BEGIN_EVENT_TABLE(AboutDialog, wxDialog)
+	EVT_BUTTON(ID_BUTTON, AboutDialog::OnExit)
+END_EVENT_TABLE()

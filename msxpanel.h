@@ -1,3 +1,6 @@
+#pragma once
+class MSXFrame;
+
 class MSXPanel : public wxPanel
 {	private:
 	void Paint(wxPaintEvent& evt);
@@ -11,7 +14,3 @@ class MSXPanel : public wxPanel
 	MSXPanel(MSXFrame* parent);
 	DECLARE_EVENT_TABLE()
 };
-
-BEGIN_EVENT_TABLE(MSXPanel, wxPanel)
-	EVT_PAINT(MSXPanel::Paint)
-END_EVENT_TABLE()

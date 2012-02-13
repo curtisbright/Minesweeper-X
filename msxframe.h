@@ -1,3 +1,6 @@
+#pragma once
+class MSXPanel;
+
 class MSXFrame : public wxFrame
 {	private:
 	enum {ID_NEW, ID_BEGINNER, ID_INTERMEDIATE, ID_EXPERT, ID_CUSTOM, ID_MARKS, ID_PLAYER_NAME, ID_SAVE_VIDEO};
@@ -15,12 +18,3 @@ class MSXFrame : public wxFrame
 	MSXFrame();
 	DECLARE_EVENT_TABLE()
 };
-
-BEGIN_EVENT_TABLE(MSXFrame, wxFrame)
-	EVT_MENU(wxID_EXIT,  MSXFrame::OnExit)
-	EVT_MENU(ID_BEGINNER, MSXFrame::OnBeginner)
-	EVT_MENU(ID_INTERMEDIATE, MSXFrame::OnIntermediate)
-	EVT_MENU(ID_EXPERT, MSXFrame::OnExpert)
-	EVT_MENU(ID_CUSTOM, MSXFrame::OnCustom)
-	EVT_MENU(wxID_ABOUT, MSXFrame::OnAbout)
-END_EVENT_TABLE()

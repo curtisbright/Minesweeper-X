@@ -1,3 +1,4 @@
+#pragma once
 /* XPM */
 static const char* winmine_ico[] = {
 /* columns rows colors chars-per-pixel */

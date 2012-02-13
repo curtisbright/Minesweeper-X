@@ -10,6 +10,28 @@
       <Platform>Win32</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="aboutdialog.cpp">
+      <RuntimeLibrary Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">MultiThreadedDebugDLL</RuntimeLibrary>
+    </ClCompile>
+    <ClCompile Include="customdialog.cpp" />
+    <ClCompile Include="msxapp.cpp" />
+    <ClCompile Include="msxframe.cpp" />
+    <ClCompile Include="msxpanel.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="graphics\blocks_bmp.xpm" />
+    <None Include="graphics\button_bmp.xpm" />
+    <None Include="graphics\led_bmp.xpm" />
+    <None Include="graphics\winmine_ico.xpm" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="aboutdialog.h" />
+    <ClInclude Include="customdialog.h" />
+    <ClInclude Include="msxapp.h" />
+    <ClInclude Include="msxframe.h" />
+    <ClInclude Include="msxpanel.h" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{DF3F6D00-FB46-4ED9-B630-4AE9FBF109F8}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
@@ -50,6 +72,10 @@
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;__WXMSW__;_UNICODE;_WINDOWS;NOPCH;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>C:\wxWidgets-2.9.3\include;C:\wxWidgets-2.9.3\include\msvc</AdditionalIncludeDirectories>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <MinimalRebuild>true</MinimalRebuild>
+      <RuntimeTypeInfo>
+      </RuntimeTypeInfo>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -67,6 +93,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;__WXMSW__;NDEBUG;_UNICODE;_WINDOWS;NOPCH;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>C:\wxWidgets-2.9.3\include;C:\wxWidgets-2.9.3\include\msvc</AdditionalIncludeDirectories>
+      <MinimalRebuild>false</MinimalRebuild>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -77,9 +104,6 @@
       <AdditionalDependencies>wxmsw29u_core.lib;wxbase29u.lib;wxtiff.lib;wxjpeg.lib;wxpng.lib;wxzlib.lib;wxregexu.lib;wxexpat.lib;kernel32.lib;user32.lib;gdi32.lib;comdlg32.lib;winspool.lib;winmm.lib;shell32.lib;comctl32.lib;ole32.lib;oleaut32.lib;uuid.lib;rpcrt4.lib;advapi32.lib;wsock32.lib;wininet.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
-  <ItemGroup>
-    <ClCompile Include="msxapp.cpp" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

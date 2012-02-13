@@ -1,3 +1,6 @@
+#include <wx/wx.h>
+#include "msxframe.h"
+#include "msxpanel.h"
 #include "graphics/button_bmp.xpm"
 #include "graphics/led_bmp.xpm"
 #include "graphics/blocks_bmp.xpm"
@@ -53,3 +56,7 @@ void MSXPanel::Paint(wxPaintEvent& event)
 	
 	dc.Blit((width-24)>>1, 16, 24, 24, button, 0, BUTTON_HAPPY);
 }
+
+BEGIN_EVENT_TABLE(MSXPanel, wxPanel)
+	EVT_PAINT(MSXPanel::Paint)
+END_EVENT_TABLE()

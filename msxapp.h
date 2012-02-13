@@ -1,4 +1,4 @@
-class MSXFrame;
+#pragma once
 
 class MSXApp : public wxApp
 {	private:

@@ -1,3 +1,6 @@
+#include <wx/wx.h>
+#include "customdialog.h"
+
 CustomDialog::CustomDialog(wxWindow* parent, int height, int width, int mines) : wxDialog(parent, wxID_ANY, wxT("Custom Field"), wxPoint(-1,-1), wxSize(-1,-1), wxDEFAULT_DIALOG_STYLE)
 {
 	//this->SetSizeHints(wxDefaultSize, wxDefaultSize);
@@ -55,3 +58,8 @@ int CustomDialog::getWidth()
 int CustomDialog::getMines()
 {	return wxAtoi(MinesInput->GetValue());
 }
+
+BEGIN_EVENT_TABLE(CustomDialog, wxDialog)
+	EVT_BUTTON(ID_OK, CustomDialog::OnExit)
+	EVT_BUTTON(ID_CANCEL, CustomDialog::OnExit)
+END_EVENT_TABLE()

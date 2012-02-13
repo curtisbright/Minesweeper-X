@@ -1,3 +1,8 @@
+#include <wx/wx.h>
+#include "msxframe.h"
+#include "msxpanel.h"
+#include "customdialog.h"
+#include "aboutdialog.h"
 #include "graphics/winmine_ico.xpm"
 
 MSXFrame::MSXFrame() : wxFrame((wxFrame*)NULL, -1, wxT("Minesweeper X"), wxPoint(50,50), wxSize(-1,-1), wxDEFAULT_FRAME_STYLE&~(wxRESIZE_BORDER|wxMAXIMIZE_BOX))
@@ -80,3 +85,12 @@ void MSXFrame::OnExpert(wxCommandEvent& WXUNUSED(event))
 void MSXFrame::Resize()
 {	SetClientSize(xNum*16+24, yNum*16+67);
 }
+
+BEGIN_EVENT_TABLE(MSXFrame, wxFrame)
+	EVT_MENU(wxID_EXIT,  MSXFrame::OnExit)
+	EVT_MENU(ID_BEGINNER, MSXFrame::OnBeginner)
+	EVT_MENU(ID_INTERMEDIATE, MSXFrame::OnIntermediate)
+	EVT_MENU(ID_EXPERT, MSXFrame::OnExpert)
+	EVT_MENU(ID_CUSTOM, MSXFrame::OnCustom)
+	EVT_MENU(wxID_ABOUT, MSXFrame::OnAbout)
+END_EVENT_TABLE()
