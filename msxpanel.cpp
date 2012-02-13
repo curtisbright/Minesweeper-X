@@ -64,29 +64,36 @@ void MSXPanel::LButtonDown(wxMouseEvent& event)
 	{	IgnoreClick = false;
 		return;
 	}*/
+	if(!HasCapture())
+		CaptureMouse();
 	if(OnButton(event.GetPosition()))
 		return;
 }
 
 void MSXPanel::RButtonDown(wxMouseEvent& WXUNUSED(event))
-{	
+{	if(!HasCapture())
+		CaptureMouse();
 }
 
 void MSXPanel::MButtonDown(wxMouseEvent& WXUNUSED(event))
-{	
+{	if(!HasCapture())
+		CaptureMouse();
 }
 
 void MSXPanel::LButtonUp(wxMouseEvent& WXUNUSED(event))
 {	DrawButton(BUTTON_HAPPY);
-	
+	if(HasCapture())	
+		ReleaseMouse();
 }
 
 void MSXPanel::RButtonUp(wxMouseEvent& WXUNUSED(event))
-{	
+{	if(HasCapture())
+		ReleaseMouse();
 }
 
 void MSXPanel::MButtonUp(wxMouseEvent& WXUNUSED(event))
-{	
+{	if(HasCapture())
+		ReleaseMouse();
 }
 
 void MSXPanel::MouseMove(wxMouseEvent& event)
