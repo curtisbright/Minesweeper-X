@@ -4,7 +4,7 @@
 #include "aboutdialog.h"
 #include "graphics/winmine_ico.xpm"
 
-AboutDialog::AboutDialog(wxWindow* parent) : wxDialog(parent, wxID_ANY, wxT("About"), wxDefaultPosition, wxSize(-1, -1), wxDEFAULT_DIALOG_STYLE)
+AboutDialog::AboutDialog(wxWindow* parent) : wxDialog(parent, wxID_ANY, wxT("About"))
 {
 	//this->SetSizeHints(wxDefaultSize, wxDefaultSize);
 	
@@ -50,7 +50,7 @@ AboutDialog::AboutDialog(wxWindow* parent) : wxDialog(parent, wxID_ANY, wxT("Abo
 	wxHyperlinkCtrl* WebsiteText = new wxHyperlinkCtrl(this, wxID_ANY, wxT("http://www.curtisbright.com/msx/"), wxT("http://www.curtisbright.com/msx/"), wxDefaultPosition, wxDefaultSize, wxHL_DEFAULT_STYLE);
 	DescriptionSizer->Add(WebsiteText, 0, wxBOTTOM|wxLEFT|wxTOP, 5);
 	
-	wxButton* OKButton = new wxButton(this, ID_BUTTON, wxT("OK"), wxDefaultPosition, wxDefaultSize, 0);
+	wxButton* OKButton = new wxButton(this, wxID_CANCEL, wxT("OK"), wxDefaultPosition, wxDefaultSize, 0);
 	DescriptionSizer->Add(OKButton, 0, wxALIGN_RIGHT|wxALL, 5);
 	
 	AboutSizer->Add(DescriptionSizer, 1, wxBOTTOM|wxEXPAND|wxRIGHT, 5);
@@ -63,11 +63,3 @@ AboutDialog::AboutDialog(wxWindow* parent) : wxDialog(parent, wxID_ANY, wxT("Abo
 	
 	OKButton->SetFocus();
 }
-
-void AboutDialog::OnExit(wxCommandEvent& WXUNUSED(event))
-{	Close(true);
-}
-
-BEGIN_EVENT_TABLE(AboutDialog, wxDialog)
-	EVT_BUTTON(ID_BUTTON, AboutDialog::OnExit)
-END_EVENT_TABLE()

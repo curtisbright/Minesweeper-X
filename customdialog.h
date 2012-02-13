@@ -2,7 +2,7 @@
 
 class CustomDialog : public wxDialog 
 {	private:
-	enum{ID_OK, ID_CANCEL};
+	enum{ID_OK};
 	void OnExit(wxCommandEvent& event);
 	wxTextCtrl* HeightInput;
 	wxTextCtrl* WidthInput;
