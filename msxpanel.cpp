@@ -111,29 +111,38 @@ void MSXPanel::MButtonDown(wxMouseEvent& WXUNUSED(event))
 
 /* Left Button Release */
 void MSXPanel::LButtonUp(wxMouseEvent& event)
-{	// Release the mouse
-	if(HasCapture()){ReleaseMouse();}
-	
-	// Check if button has been clicked
+{	// Check if button has been clicked
 	if(ButtonClick)
 	{	ButtonClick = false;
 		DrawButton(BUTTON_HAPPY);
 		if(OnButton(event.GetPosition()))
 		{	// Process new game
 		}
+		
+		// Release the mouse
+		if(HasCapture()){ReleaseMouse();}
 		return;
 	}
+	
+	// Release the mouse
+	if(HasCapture()){ReleaseMouse();}
 }
 
 /* Right Button Release */
 void MSXPanel::RButtonUp(wxMouseEvent& WXUNUSED(event))
-{	// Release the mouse
+{	// Ignore click if the button has been pressed
+	if(ButtonClick){return;}
+	
+	// Release the mouse
 	if(HasCapture()){ReleaseMouse();}
 }
 
 /* Middle Button Release */
 void MSXPanel::MButtonUp(wxMouseEvent& WXUNUSED(event))
-{	// Release the mouse
+{	// Ignore click if the button has been pressed
+	if(ButtonClick){return;}
+	
+	// Release the mouse
 	if(HasCapture()){ReleaseMouse();}
 }
 
