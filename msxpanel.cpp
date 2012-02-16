@@ -20,6 +20,10 @@ MSXPanel::MSXPanel(MSXFrame* parent) : wxPanel(parent)
 	button = new wxMemoryDC(*buttonbmp);
 	led = new wxMemoryDC(*ledbmp);
 	blocks = new wxMemoryDC(*blocksbmp);
+	
+	ButtonState = BUTTON_HAPPY;
+	ButtonClick = false;
+	GameAsleep = false;
 }
 
 void MSXPanel::DrawBorder(wxDC& dc, int x1, int y1, int x2, int y2, int width, int colour)
@@ -48,56 +52,110 @@ void MSXPanel::DrawButton(int type)
 	int width, height;
 	frame->GetClientSize(&width, &height);
 	dc.Blit((width-24)>>1, 16, 24, 24, button, 0, type);
+	ButtonState = type;
 }
 
 bool MSXPanel::OnButton(wxPoint pos)
 {	int width, height;
 	GetClientSize(&width, &height);
 	wxRect* Capture = new wxRect((width-24)>>1, 16, 24, 24);
-	if(!Capture->Contains(pos))
-		return false;
-	DrawButton(BUTTON_DOWN);
+	return Capture->Contains(pos);
 }
 
+/* Left Button Press */
 void MSXPanel::LButtonDown(wxMouseEvent& event)
-{	/*if(IgnoreClick)
-	{	IgnoreClick = false;
-		return;
-	}*/
-	if(!HasCapture())
-		CaptureMouse();
+{	// Ignore click if window has just activated
+	if(IgnoreClick){IgnoreClick=false; return;}
+	
+	// Ignore click if the button has been pressed
+	if(ButtonClick){return;}
+	
+	// Check the status of game
+	if(GameAsleep){return;}
+	
+	// Capture the mouse
+	if(!HasCapture()){CaptureMouse();}
+	
+	// Check if click is over the button
 	if(OnButton(event.GetPosition()))
+	{	ButtonClick = true;
+		DrawButton(BUTTON_DOWN);
 		return;
+	}
 }
 
+/* Right Button Press */
 void MSXPanel::RButtonDown(wxMouseEvent& WXUNUSED(event))
-{	if(!HasCapture())
-		CaptureMouse();
+{	// Ignore click if window has just activated
+	if(IgnoreClick){IgnoreClick=false; return;}
+	
+	// Ignore click if the button has been pressed
+	if(ButtonClick){return;}
+
 }
 
+/* Middle Button Press */
 void MSXPanel::MButtonDown(wxMouseEvent& WXUNUSED(event))
-{	if(!HasCapture())
-		CaptureMouse();
+{	// Ignore click if window has just activated
+	if(IgnoreClick){IgnoreClick=false; return;}
+
+	// Ignore click if the button has been pressed
+	if(ButtonClick){return;}
+	
+	// Check the status of game
+	if(GameAsleep){return;}
+	
+	// Capture the mouse
+	if(!HasCapture()){CaptureMouse();}
 }
 
-void MSXPanel::LButtonUp(wxMouseEvent& WXUNUSED(event))
-{	DrawButton(BUTTON_HAPPY);
-	if(HasCapture())	
-		ReleaseMouse();
+/* Left Button Release */
+void MSXPanel::LButtonUp(wxMouseEvent& event)
+{	// Release the mouse
+	if(HasCapture()){ReleaseMouse();}
+	
+	// Check if button has been clicked
+	if(ButtonClick)
+	{	ButtonClick = false;
+		DrawButton(BUTTON_HAPPY);
+		if(OnButton(event.GetPosition()))
+		{	// Process new game
+		}
+		return;
+	}
 }
 
+/* Right Button Release */
 void MSXPanel::RButtonUp(wxMouseEvent& WXUNUSED(event))
-{	if(HasCapture())
-		ReleaseMouse();
+{	// Release the mouse
+	if(HasCapture()){ReleaseMouse();}
 }
 
+/* Middle Button Release */
 void MSXPanel::MButtonUp(wxMouseEvent& WXUNUSED(event))
-{	if(HasCapture())
-		ReleaseMouse();
+{	// Release the mouse
+	if(HasCapture()){ReleaseMouse();}
 }
 
+/* Mouse Move Event */
 void MSXPanel::MouseMove(wxMouseEvent& event)
-{	printf("(%i %i)\n", event.GetX(), event.GetY());
+{	// Window was not just activated
+	IgnoreClick = false;
+	
+	// Check if button has been clicked
+	if(ButtonClick)
+	{	if(OnButton(event.GetPosition()))
+			DrawButton(BUTTON_DOWN);
+		else
+			DrawButton(BUTTON_HAPPY);
+	}
+	
+	// Debugging
+	printf("(%i %i) (", event.GetX(), event.GetY());
+	if(event.m_leftDown)printf("l");
+	if(event.m_middleDown)printf("m");
+	if(event.m_rightDown)printf("r");
+	printf(")\n");
 }
 
 void MSXPanel::Paint(wxPaintEvent& event)
@@ -111,7 +169,7 @@ void MSXPanel::Paint(wxPaintEvent& event)
 	DrawBorder(dc, width-59, 15, width-19, 39, 1, 0);
 	DrawBorder(dc, ((width-24)>>1)-1, 15, ((width-24)>>1)+24, 40, 1, 2);
 	
-	dc.Blit((width-24)>>1, 16, 24, 24, button, 0, BUTTON_HAPPY);
+	dc.Blit((width-24)>>1, 16, 24, 24, button, 0, ButtonState);
 }
 
 BEGIN_EVENT_TABLE(MSXPanel, wxPanel)

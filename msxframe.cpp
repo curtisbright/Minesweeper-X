@@ -87,7 +87,7 @@ void MSXFrame::Resize()
 }
 
 void MSXFrame::Activate(wxActivateEvent& WXUNUSED(event))
-{	//IgnoreClick = true;
+{	drawPane->IgnoreClick = true;
 }
 
 BEGIN_EVENT_TABLE(MSXFrame, wxFrame)
