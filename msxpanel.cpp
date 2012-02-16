@@ -82,6 +82,8 @@ void MSXPanel::LButtonDown(wxMouseEvent& event)
 		DrawButton(BUTTON_DOWN);
 		return;
 	}
+	
+	DrawButton(BUTTON_CAUTION);
 }
 
 /* Right Button Press */
@@ -91,7 +93,6 @@ void MSXPanel::RButtonDown(wxMouseEvent& WXUNUSED(event))
 	
 	// Ignore click if the button has been pressed
 	if(ButtonClick){return;}
-
 }
 
 /* Middle Button Press */
@@ -107,6 +108,8 @@ void MSXPanel::MButtonDown(wxMouseEvent& WXUNUSED(event))
 	
 	// Capture the mouse
 	if(!HasCapture()){CaptureMouse();}
+	
+	DrawButton(BUTTON_CAUTION);
 }
 
 /* Left Button Release */
@@ -126,6 +129,8 @@ void MSXPanel::LButtonUp(wxMouseEvent& event)
 	
 	// Release the mouse
 	if(HasCapture()){ReleaseMouse();}
+	
+	DrawButton(BUTTON_HAPPY);
 }
 
 /* Right Button Release */
@@ -135,6 +140,8 @@ void MSXPanel::RButtonUp(wxMouseEvent& WXUNUSED(event))
 	
 	// Release the mouse
 	if(HasCapture()){ReleaseMouse();}
+	
+	DrawButton(BUTTON_HAPPY);
 }
 
 /* Middle Button Release */
@@ -144,6 +151,8 @@ void MSXPanel::MButtonUp(wxMouseEvent& WXUNUSED(event))
 	
 	// Release the mouse
 	if(HasCapture()){ReleaseMouse();}
+	
+	DrawButton(BUTTON_HAPPY);
 }
 
 /* Mouse Move Event */
