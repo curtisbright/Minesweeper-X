@@ -3,7 +3,7 @@ class MSXFrame;
 
 class MSXPanel : public wxPanel
 {	private:
-	void Paint(wxPaintEvent& evt);
+	void Paint(wxPaintEvent& event);
 	void DrawBorder(wxDC& dc, int x1, int y1, int x2, int y2, int width, int colour);
 	MSXFrame* frame;
 	wxMemoryDC* button;
