@@ -4,14 +4,14 @@ class CustomDialog : public wxDialog
 {	private:
 	enum{ID_OK};
 	void OnExit(wxCommandEvent& event);
-	wxTextCtrl* HeightInput;
-	wxTextCtrl* WidthInput;
-	wxTextCtrl* MinesInput;
+	wxTextCtrl* heightInput;
+	wxTextCtrl* widthInput;
+	wxTextCtrl* minesInput;
 	
 	public:
 	CustomDialog(wxWindow* parent, int height, int width, int mines); 
-	int getHeight();
-	int getWidth();
-	int getMines();
+	int GetHeight();
+	int GetWidth();
+	int GetMines();
 	DECLARE_EVENT_TABLE()
 };

@@ -12,7 +12,7 @@ class MSXFrame : public wxFrame
 	void OnCustom(wxCommandEvent& event);
 	void Resize();
 	void Activate(wxActivateEvent& event);
-	MSXPanel* drawPane;
+	MSXPanel* panel;
 	int xNum, yNum, mNum;
 
 	public:

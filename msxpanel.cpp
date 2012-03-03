@@ -14,16 +14,16 @@
 MSXPanel::MSXPanel(MSXFrame* parent) : wxPanel(parent)
 {	frame = parent;
 
-	wxBitmap* buttonbmp = new wxBitmap(button_bmp);
-	wxBitmap* ledbmp = new wxBitmap(led_bmp);
-	wxBitmap* blocksbmp = new wxBitmap(blocks_bmp);
-	button = new wxMemoryDC(*buttonbmp);
-	led = new wxMemoryDC(*ledbmp);
-	blocks = new wxMemoryDC(*blocksbmp);
+	wxBitmap* buttonBitmap = new wxBitmap(button_bmp);
+	wxBitmap* ledBitmap = new wxBitmap(led_bmp);
+	wxBitmap* blocksBitmap = new wxBitmap(blocks_bmp);
+	button = new wxMemoryDC(*buttonBitmap);
+	led = new wxMemoryDC(*ledBitmap);
+	blocks = new wxMemoryDC(*blocksBitmap);
 	
-	ButtonState = BUTTON_HAPPY;
-	ButtonClick = false;
-	GameAsleep = false;
+	buttonState = BUTTON_HAPPY;
+	buttonClick = false;
+	gameAsleep = false;
 }
 
 void MSXPanel::DrawBorder(wxDC& dc, int x1, int y1, int x2, int y2, int width, int colour)
@@ -52,7 +52,7 @@ void MSXPanel::DrawButton(int type)
 	int width, height;
 	frame->GetClientSize(&width, &height);
 	dc.Blit((width-24)>>1, 16, 24, 24, button, 0, type);
-	ButtonState = type;
+	buttonState = type;
 }
 
 bool MSXPanel::OnButton(wxPoint pos)
@@ -65,20 +65,20 @@ bool MSXPanel::OnButton(wxPoint pos)
 /* Left Button Press */
 void MSXPanel::LButtonDown(wxMouseEvent& event)
 {	// Ignore click if window has just activated
-	if(IgnoreClick){IgnoreClick=false; return;}
+	if(ignoreClick){ignoreClick=false; return;}
 	
 	// Ignore click if the button has been pressed
-	if(ButtonClick){return;}
+	if(buttonClick){return;}
 	
 	// Check the status of game
-	if(GameAsleep){return;}
+	if(gameAsleep){return;}
 	
 	// Capture the mouse
 	if(!HasCapture()){CaptureMouse();}
 	
 	// Check if click is over the button
 	if(OnButton(event.GetPosition()))
-	{	ButtonClick = true;
+	{	buttonClick = true;
 		DrawButton(BUTTON_DOWN);
 		return;
 	}
@@ -89,22 +89,22 @@ void MSXPanel::LButtonDown(wxMouseEvent& event)
 /* Right Button Press */
 void MSXPanel::RButtonDown(wxMouseEvent& WXUNUSED(event))
 {	// Ignore click if window has just activated
-	if(IgnoreClick){IgnoreClick=false; return;}
+	if(ignoreClick){ignoreClick=false; return;}
 	
 	// Ignore click if the button has been pressed
-	if(ButtonClick){return;}
+	if(buttonClick){return;}
 }
 
 /* Middle Button Press */
 void MSXPanel::MButtonDown(wxMouseEvent& WXUNUSED(event))
 {	// Ignore click if window has just activated
-	if(IgnoreClick){IgnoreClick=false; return;}
+	if(ignoreClick){ignoreClick=false; return;}
 
 	// Ignore click if the button has been pressed
-	if(ButtonClick){return;}
+	if(buttonClick){return;}
 	
 	// Check the status of game
-	if(GameAsleep){return;}
+	if(gameAsleep){return;}
 	
 	// Capture the mouse
 	if(!HasCapture()){CaptureMouse();}
@@ -115,8 +115,8 @@ void MSXPanel::MButtonDown(wxMouseEvent& WXUNUSED(event))
 /* Left Button Release */
 void MSXPanel::LButtonUp(wxMouseEvent& event)
 {	// Check if button has been clicked
-	if(ButtonClick)
-	{	ButtonClick = false;
+	if(buttonClick)
+	{	buttonClick = false;
 		DrawButton(BUTTON_HAPPY);
 		if(OnButton(event.GetPosition()))
 		{	// Process new game
@@ -136,7 +136,7 @@ void MSXPanel::LButtonUp(wxMouseEvent& event)
 /* Right Button Release */
 void MSXPanel::RButtonUp(wxMouseEvent& WXUNUSED(event))
 {	// Ignore click if the button has been pressed
-	if(ButtonClick){return;}
+	if(buttonClick){return;}
 	
 	// Release the mouse
 	if(HasCapture()){ReleaseMouse();}
@@ -147,7 +147,7 @@ void MSXPanel::RButtonUp(wxMouseEvent& WXUNUSED(event))
 /* Middle Button Release */
 void MSXPanel::MButtonUp(wxMouseEvent& WXUNUSED(event))
 {	// Ignore click if the button has been pressed
-	if(ButtonClick){return;}
+	if(buttonClick){return;}
 	
 	// Release the mouse
 	if(HasCapture()){ReleaseMouse();}
@@ -158,10 +158,10 @@ void MSXPanel::MButtonUp(wxMouseEvent& WXUNUSED(event))
 /* Mouse Move Event */
 void MSXPanel::MouseMove(wxMouseEvent& event)
 {	// Window was not just activated
-	IgnoreClick = false;
+	ignoreClick = false;
 	
 	// Check if button has been clicked
-	if(ButtonClick)
+	if(buttonClick)
 	{	if(OnButton(event.GetPosition()))
 			DrawButton(BUTTON_DOWN);
 		else
@@ -187,7 +187,7 @@ void MSXPanel::Paint(wxPaintEvent& event)
 	DrawBorder(dc, width-59, 15, width-19, 39, 1, 0);
 	DrawBorder(dc, ((width-24)>>1)-1, 15, ((width-24)>>1)+24, 40, 1, 2);
 	
-	dc.Blit((width-24)>>1, 16, 24, 24, button, 0, ButtonState);
+	dc.Blit((width-24)>>1, 16, 24, 24, button, 0, buttonState);
 }
 
 BEGIN_EVENT_TABLE(MSXPanel, wxPanel)

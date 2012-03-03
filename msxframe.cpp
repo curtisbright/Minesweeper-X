@@ -11,8 +11,8 @@ MSXFrame::MSXFrame() : wxFrame((wxFrame*)NULL, -1, wxT("Minesweeper X"), wxPoint
 	yNum = 16;
 	mNum = 40;
 	
-	drawPane = new MSXPanel((MSXFrame*)this);
-	drawPane->SetBackgroundColour(wxColour(192, 192, 192));
+	panel = new MSXPanel((MSXFrame*)this);
+	panel->SetBackgroundColour(wxColour(192, 192, 192));
 	
 	wxMenuBar *menu_bar = new wxMenuBar;
 	wxMenu *game_menu = new wxMenu;
@@ -43,7 +43,7 @@ MSXFrame::MSXFrame() : wxFrame((wxFrame*)NULL, -1, wxT("Minesweeper X"), wxPoint
 }
 
 void MSXFrame::OnExit(wxCommandEvent& WXUNUSED(event))
-{	Close(true);
+{	Close();
 }
 
 void MSXFrame::OnAbout(wxCommandEvent& WXUNUSED(event))
@@ -54,9 +54,9 @@ void MSXFrame::OnAbout(wxCommandEvent& WXUNUSED(event))
 void MSXFrame::OnCustom(wxCommandEvent& WXUNUSED(event))
 {	CustomDialog dialog(this, yNum, xNum, mNum);
 	if(dialog.ShowModal() == wxID_OK)
-	{	yNum = dialog.getHeight();
-		xNum = dialog.getWidth();
-		mNum = dialog.getMines();
+	{	yNum = dialog.GetHeight();
+		xNum = dialog.GetWidth();
+		mNum = dialog.GetMines();
 		Resize();
 	}
 }
@@ -87,7 +87,7 @@ void MSXFrame::Resize()
 }
 
 void MSXFrame::Activate(wxActivateEvent& WXUNUSED(event))
-{	drawPane->IgnoreClick = true;
+{	panel->ignoreClick = true;
 }
 
 BEGIN_EVENT_TABLE(MSXFrame, wxFrame)

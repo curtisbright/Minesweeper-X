@@ -17,13 +17,13 @@ class MSXPanel : public wxPanel
 	void MButtonUp(wxMouseEvent& event);
 	void MouseMove(wxMouseEvent& event);
 	bool OnButton(wxPoint pos);
-	bool ButtonClick;
-	int ButtonState;
-	bool GameAsleep;
+	bool buttonClick;
+	int buttonState;
+	bool gameAsleep;
 	
 	public:
 	MSXPanel(MSXFrame* parent);
 	void DrawButton(int type);
-	bool IgnoreClick;
+	bool ignoreClick;
 	DECLARE_EVENT_TABLE()
 };
